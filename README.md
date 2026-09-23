@@ -52,7 +52,7 @@ This project uses **[uv](https://github.com/astral-sh/uv)** for fast, reliable P
 ```bash
 # Clone repository
 git clone https://github.com/yourusername/OmniSupply-AI-Multi-Agent-Supply-Chain-Intelligence-Platform.git
-cd OmniSupply-AI-Multi-Agent-Supply-Chain-Intelligence-Platform
+cd PartnerPulse-Category-Partner-Operations-Intelligence-Platform
 
 # Install uv (if not already installed)
 curl -LsSf https://astral.sh/uv/install.sh | sh
