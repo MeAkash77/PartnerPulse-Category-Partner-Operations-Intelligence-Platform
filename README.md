@@ -1,4 +1,4 @@
-# OmniSupply: Multi-Agent Supply Chain Intelligence Platform
+# PartnerPulse-Category-Partner-Operations-Intelligence-Platform
 
 **Enterprise AI system for automated supply chain insights, risk predictions, and executive reporting.**
 
@@ -9,9 +9,9 @@
 
 ---
 
-## 🎯 What is OmniSupply?
+## 🎯 What is PartnerPulse?
 
-OmniSupply is a **production-ready multi-agent AI platform** that ingests real supply chain, sales, and financial data to provide:
+PartnerPulse is a **production-ready multi-agent AI platform** that ingests real supply chain, sales, and financial data to provide:
 
 - ✅ **Automated Insights**: AI-generated KPI summaries, trend analysis, anomaly detection
 - ✅ **Risk Predictions**: Proactive alerts for delivery delays, inventory shortages, quality issues
@@ -47,11 +47,11 @@ User Query → Supervisor Agent → [Data Analyst, Risk, Finance, Meeting, Email
 
 ### 1. Installation
 
-This project uses **[uv](https://github.com/astral-sh/uv)** for fast, reliable Python package management.
+This project uses **[uv](https://github.com/MeAkash77)** for fast, reliable Python package management.
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/OmniSupply-AI-Multi-Agent-Supply-Chain-Intelligence-Platform.git
+git clone https://github.com/MeAkash77/PartnerPulse-Category-Partner-Operations-Intelligence-Platform.git
 cd PartnerPulse-Category-Partner-Operations-Intelligence-Platform
 
 # Install uv (if not already installed)
@@ -85,7 +85,7 @@ bash setup_local_postgres.sh
 
 This will:
 - Create a PostgreSQL 15 Docker container
-- Configure database: `omnisupply`
+- Configure database: `PartnerPulse`
 - Setup user credentials
 - Expose on port 5432
 
@@ -437,4 +437,4 @@ Questions or feedback? Open an issue or reach out to the team.
 
 ---
 
-**⭐ If you find OmniSupply useful, please star the repository!**
+**⭐ If you find useful, please star the repository!**
