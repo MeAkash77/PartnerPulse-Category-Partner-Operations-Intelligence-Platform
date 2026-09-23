@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="PartnerPulse — Category & Partner Operations Intelligence Platform. A recruiter-facing marketplace analytics experience covering supply-demand, partner utilization, quality, cancellations, and capacity planning.">
+<title>PartnerPulse — Marketplace Operations Intelligence</title>
+<style>
+:root{
+  --bg:#060912;--panel:#0b1220;--panel2:#0e1728;--line:#1d2a3e;--text:#edf4ff;
+  --muted:#8ea0b8;--blue:#57a8ff;--cyan:#48e0d1;--green:#55d68a;--amber:#ffc857;
+  --red:#ff6b7a;--purple:#a98bff;--shadow:0 24px 80px rgba(0,0,0,.32);--radius:22px;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 80% 5%,rgba(87,168,255,.10),transparent 28%),radial-gradient(circle at 15% 35%,rgba(72,224,209,.06),transparent 25%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.5;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,#000,transparent 90%);z-index:-1}
+a{color:inherit;text-decoration:none}.container{width:min(1180px,calc(100% - 36px));margin:auto}
+nav{position:fixed;top:0;left:0;right:0;height:76px;z-index:50;background:rgba(6,9,18,.74);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav{height:100%;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.03em}
+.logo{width:35px;height:35px;border-radius:11px;background:linear-gradient(135deg,var(--blue),var(--cyan));position:relative;box-shadow:0 0 30px rgba(87,168,255,.22)}
+.logo:after{content:"";position:absolute;width:11px;height:11px;border:2px solid #07101c;border-radius:50%;left:10px;top:10px}
+.links{display:flex;gap:24px;color:var(--muted);font-size:13px}.links a{transition:.25s}.links a:hover,.links a.active{color:var(--text)}
+.nav-actions{display:flex;gap:9px}.btn{border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text);padding:10px 15px;border-radius:11px;font-weight:700;font-size:12px;cursor:pointer;transition:.25s}.btn:hover{transform:translateY(-2px);border-color:#345070;background:rgba(255,255,255,.06)}.btn.primary{background:linear-gradient(135deg,#328cf2,#46cfc4);color:#04101a;border:0}
+.hero{min-height:850px;padding:155px 0 80px;position:relative;display:flex;align-items:center}.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:55px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#a9bad0;border:1px solid var(--line);background:rgba(255,255,255,.025);padding:7px 11px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.pulse{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 0 5px rgba(85,214,138,.09);animation:pulse 1.8s infinite}
+h1{font-size:clamp(52px,7vw,92px);line-height:.92;letter-spacing:-.065em;margin:24px 0 22px;max-width:800px}.gradient{background:linear-gradient(100deg,#fff 15%,#77b8ff 55%,#68e0d4);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:18px;color:var(--muted);max-width:650px}.hero-ctas{display:flex;gap:11px;margin:30px 0 26px;flex-wrap:wrap}.micro{display:flex;gap:22px;color:#71849e;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.micro b{color:#cbd8e8}
+.orbit{height:480px;border:1px solid var(--line);border-radius:30px;background:linear-gradient(145deg,rgba(16,27,44,.94),rgba(7,13,23,.88));box-shadow:var(--shadow);position:relative;overflow:hidden}.orbit:before{content:"";position:absolute;inset:35px;border:1px dashed rgba(87,168,255,.18);border-radius:50%;animation:spin 30s linear infinite}.orbit:after{content:"";position:absolute;width:260px;height:260px;left:50%;top:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(87,168,255,.14),transparent 68%);filter:blur(10px)}
+.core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:165px;height:165px;border-radius:50%;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at 35% 25%,#19365a,#0b1728 65%);border:1px solid #31557c;box-shadow:0 0 80px rgba(87,168,255,.20);z-index:3}.core strong{font-size:25px}.core span{font-size:10px;color:var(--muted);display:block;margin-top:4px;letter-spacing:.12em}
+.node{position:absolute;z-index:4;padding:11px 13px;border:1px solid var(--line);background:rgba(8,15,27,.9);border-radius:13px;min-width:116px;box-shadow:0 10px 30px rgba(0,0,0,.22);animation:float 4s ease-in-out infinite}.node small{display:block;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.08em}.node b{font-size:13px}.n1{top:58px;left:46px}.n2{top:75px;right:35px;animation-delay:-1s}.n3{bottom:72px;left:55px;animation-delay:-2s}.n4{bottom:56px;right:45px;animation-delay:-3s}
+.data-dot{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 14px var(--cyan);z-index:5}.d1{animation:travel1 5s linear infinite}.d2{animation:travel2 6s linear infinite;animation-delay:1s}.d3{animation:travel3 7s linear infinite;animation-delay:2s}
+.section{padding:105px 0}.section-head{display:flex;justify-content:space-between;gap:25px;align-items:end;margin-bottom:35px}.kicker{font-size:10px;letter-spacing:.18em;color:var(--blue);font-weight:900;text-transform:uppercase}.section h2{font-size:clamp(32px,4vw,54px);line-height:1;letter-spacing:-.045em;margin:10px 0}.section-head p{max-width:540px;color:var(--muted);margin:0}
+.grid{display:grid;gap:16px}.kpis{grid-template-columns:repeat(6,1fr)}.card{background:linear-gradient(145deg,rgba(14,23,40,.92),rgba(9,15,27,.92));border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 15px 45px rgba(0,0,0,.15)}.kpi{padding:20px;min-height:145px;position:relative;overflow:hidden}.kpi:after{content:"";position:absolute;width:100px;height:100px;right:-40px;top:-40px;background:radial-gradient(circle,rgba(87,168,255,.16),transparent 70%)}.kpi .label{font-size:10px;color:var(--muted);font-weight:800;letter-spacing:.1em;text-transform:uppercase}.value{font-size:30px;font-weight:850;letter-spacing:-.04em;margin:12px 0 3px}.delta{font-size:11px;color:var(--green);font-weight:700}.dashboard{grid-template-columns:1.35fr .65fr}.panel{padding:23px}.panel-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.panel-title h3{margin:0;font-size:15px}.panel-title span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.chart{height:270px;position:relative;border-left:1px solid #1d2a3b;border-bottom:1px solid #1d2a3b;background:repeating-linear-gradient(to bottom,transparent 0,transparent 53px,rgba(255,255,255,.045) 54px)}
+svg{width:100%;height:100%;overflow:visible}.line-main{fill:none;stroke:var(--blue);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 7px rgba(87,168,255,.45));stroke-dasharray:800;stroke-dashoffset:800;animation:draw 2.4s ease forwards}.line-alt{fill:none;stroke:var(--cyan);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.8;stroke-dasharray:800;stroke-dashoffset:800;animation:draw 2.8s .3s ease forwards}.area{fill:url(#fade);opacity:.5}.legend{display:flex;gap:18px;font-size:10px;color:var(--muted);margin-top:12px}.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--blue)}.legend .c i{background:var(--cyan)}
+.mini-list{display:grid;gap:12px}.metric-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.05)}.metric-row:last-child{border-bottom:0}.metric-row span{font-size:11px;color:var(--muted)}.metric-row b{font-size:13px}
+.categories{grid-template-columns:repeat(5,1fr)}.cat{padding:19px;min-height:205px;position:relative;overflow:hidden}.cat .top{display:flex;justify-content:space-between}.cat h3{margin:7px 0;font-size:15px}.score{font-size:27px;font-weight:850}.bar{height:5px;border-radius:99px;background:#172337;margin:14px 0;overflow:hidden}.bar i{display:block;height:100%;width:var(--w);background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:99px;animation:grow 1.5s ease both}.cat p{font-size:10px;color:var(--muted);margin:0}.statline{display:flex;justify-content:space-between;font-size:10px;margin-top:9px}.statline b{color:#dce8f8}
+.split{grid-template-columns:1fr 1fr}.heat{display:grid;grid-template-columns:90px repeat(6,1fr);gap:5px;font-size:9px}.heat div{height:35px;border-radius:6px;background:#132137;display:grid;place-items:center;color:#aabbd0}.heat .hot{background:rgba(255,107,122,.48);color:white}.heat .warm{background:rgba(255,200,87,.35)}.heat .cool{background:rgba(72,224,209,.22)}.heat .head{background:transparent;color:var(--muted)}
+.lifecycle{display:flex;align-items:center;gap:0;overflow:auto;padding:10px 0}.stage{min-width:145px;text-align:center;position:relative}.stage:not(:last-child):after{content:"→";position:absolute;right:-7px;top:22px;color:#4b6380}.stage-dot{width:48px;height:48px;margin:auto;border:1px solid #315070;border-radius:50%;display:grid;place-items:center;background:#0c1829;box-shadow:0 0 25px rgba(87,168,255,.08)}.stage b{display:block;font-size:12px;margin-top:9px}.stage span{font-size:10px;color:var(--muted)}
+.simulator{grid-template-columns:.75fr 1.25fr}.controls{display:grid;gap:22px}.control label{display:flex;justify-content:space-between;font-size:11px;color:#a7b8cc;font-weight:700}.control output{color:var(--text)}input[type=range]{width:100%;accent-color:#57a8ff;margin-top:11px}.sim-chart{height:250px;display:flex;align-items:end;gap:12px;padding:15px 10px;border-bottom:1px solid var(--line);border-left:1px solid var(--line)}.bar-col{flex:1;height:100%;display:flex;align-items:end;gap:4px;justify-content:center}.bar-col i{display:block;width:40%;background:linear-gradient(to top,#2f85e7,#68e0d4);border-radius:6px 6px 0 0;transition:height .5s}.bar-col i.alt{background:rgba(255,255,255,.13)}.bar-label{text-align:center;font-size:9px;color:var(--muted);margin-top:7px}
+.recommendations{grid-template-columns:repeat(3,1fr)}.alert{padding:22px;min-height:220px}.tag{font-size:9px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;padding:5px 8px;border-radius:99px;display:inline-block;background:rgba(255,107,122,.1);color:var(--red);border:1px solid rgba(255,107,122,.18)}.tag.good{background:rgba(85,214,138,.08);color:var(--green);border-color:rgba(85,214,138,.18)}.tag.warn{background:rgba(255,200,87,.08);color:var(--amber);border-color:rgba(255,200,87,.18)}.alert h3{margin:18px 0 7px;font-size:18px}.alert p{color:var(--muted);font-size:12px}.confidence{margin-top:17px;font-size:10px;color:#aab9cc}.terminal{background:#050a12;border:1px solid #1b2a3d;border-radius:16px;overflow:hidden}.terminal-head{padding:11px 14px;border-bottom:1px solid #182438;display:flex;align-items:center;gap:7px}.terminal-head i{width:8px;height:8px;border-radius:50%;background:#34465c}.terminal-head span{margin-left:auto;color:#657993;font-size:9px;letter-spacing:.1em}.code{padding:20px;font-family:"SFMono-Regular",Consolas,monospace;font-size:12px;color:#b9cae0;min-height:245px;white-space:pre-wrap}.code .kw{color:#72b5ff}.code .str{color:#75dfb0}.code .num{color:#ffc857}.terminal-result{border-top:1px solid #182438;padding:15px;color:#72d9c8;font-family:monospace;font-size:11px}.architecture{position:relative;padding:32px}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;align-items:center}.flow-node{padding:22px 15px;text-align:center;position:relative}.flow-node strong{display:block;font-size:12px}.flow-node span{display:block;font-size:9px;color:var(--muted);margin-top:5px}.flow-arrow{text-align:center;color:#54708e;font-size:20px}
+.tech{display:flex;flex-wrap:wrap;gap:9px}.tech span{padding:9px 12px;border:1px solid var(--line);border-radius:10px;color:#b9c8da;background:rgba(255,255,255,.025);font-size:11px}
+.decision{display:grid;grid-template-columns:1fr 1fr;gap:16px}.decision .card{padding:27px}.decision h3{font-size:21px;margin:0 0 9px}.decision p{color:var(--muted);font-size:13px}.formula{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:18px}.formula span{padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:10px}.formula b{color:#4f6782}
+footer{padding:60px 0 45px;border-top:1px solid var(--line);margin-top:50px}.footer-grid{display:flex;justify-content:space-between;gap:25px}.footer-grid p{color:var(--muted);max-width:620px;font-size:12px}.disclaimer{font-size:10px;color:#667990;max-width:900px;margin-top:30px}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
+.toast{position:fixed;right:20px;bottom:20px;background:#101b2b;border:1px solid #2a405d;padding:13px 16px;border-radius:12px;font-size:11px;box-shadow:var(--shadow);transform:translateY(130px);transition:.35s;z-index:100}.toast.show{transform:none}
+@keyframes pulse{50%{box-shadow:0 0 0 9px rgba(85,214,138,0)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes float{50%{transform:translateY(-7px)}}@keyframes draw{to{stroke-dashoffset:0}}@keyframes grow{from{width:0}}@keyframes travel1{0%{left:22%;top:49%}50%{left:72%;top:23%}100%{left:86%;top:62%}}@keyframes travel2{0%{left:75%;top:74%}50%{left:28%;top:27%}100%{left:15%;top:61%}}@keyframes travel3{0%{left:50%;top:23%}50%{left:25%;top:73%}100%{left:78%;top:74%}}
+@media(max-width:1000px){.links{display:none}.hero-grid,.dashboard,.simulator,.decision{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(3,1fr)}.categories{grid-template-columns:repeat(2,1fr)}.flow{grid-template-columns:1fr}.flow-arrow{transform:rotate(90deg)}.hero{padding-top:125px}.orbit{height:420px}}
+@media(max-width:650px){.container{width:min(100% - 24px,1180px)}.nav-actions .btn:first-child{display:none}.hero{min-height:auto;padding-bottom:50px}.hero p{font-size:15px}.micro{flex-wrap:wrap}.orbit{height:370px}.n1,.n2,.n3,.n4{transform:scale(.82)}.kpis,.categories,.recommendations,.split{grid-template-columns:1fr}.section{padding:75px 0}.section-head{display:block}.section-head p{margin-top:15px}.lifecycle{padding-bottom:20px}.footer-grid{display:block}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="container nav">
+    <a class="brand" href="#top"><span class="logo"></span>PartnerPulse</a>
+    <div class="links">
+      <a href="#overview">Overview</a><a href="#categories">Categories</a><a href="#partners">Partners</a><a href="#simulator">Simulator</a><a href="#architecture">Architecture</a>
+    </div>
+    <div class="nav-actions"><button class="btn" onclick="showToast('Demo analytics environment')">Demo Mode</button><a class="btn primary" href="#dashboard">Explore Platform</a></div>
+  </div>
+</nav>
+
+<main id="top">
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <div class="eyebrow"><span class="pulse"></span> Marketplace Operations Intelligence</div>
+      <h1>Partner<span class="gradient">Pulse</span></h1>
+      <p><strong>Category & Partner Operations Intelligence Platform.</strong> Turn booking and partner data into decisions around supply-demand balance, utilization, cancellations, service quality, revenue and capacity planning.</p>
+      <div class="hero-ctas"><a class="btn primary" href="#dashboard">Explore Live Dashboard ↓</a><a class="btn" href="#architecture">View Architecture</a></div>
+      <div class="micro"><span><b>100K+</b> Records</span><span><b>05</b> Categories</span><span><b>SQL + Python</b></span><span><b>BI Analytics</b></span></div>
+    </div>
+    <div class="orbit reveal">
+      <div class="core"><div><strong>Marketplace<br>Health</strong><span>PARTNERPULSE ENGINE</span></div></div>
+      <div class="node n1"><small>Demand</small><b>18,420 bookings</b></div>
+      <div class="node n2"><small>Supply</small><b>16,800 capacity</b></div>
+      <div class="node n3"><small>Utilization</small><b>78.6%</b></div>
+      <div class="node n4"><small>Quality</small><b>4.72 / 5</b></div>
+      <span class="data-dot d1"></span><span class="data-dot d2"></span><span class="data-dot d3"></span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="overview">
+<div class="container">
+  <div class="section-head reveal"><div><div class="kicker">01 / Marketplace Pulse</div><h2>One view of marketplace health.</h2></div><p>PartnerPulse connects bookings, partner supply, capacity, utilization, quality and revenue into one operational analytics layer.</p></div>
+  <div class="grid kpis">
+    <div class="card kpi reveal"><div class="label">Records analyzed</div><div class="value counter" data-target="100000" data-format="plus">0</div><div class="delta">SQL + Python analysis</div></div>
+    <div class="card kpi reveal"><div class="label">Partner capacity</div><div class="value counter" data-target="16800">0</div><div class="delta">Current demo snapshot</div></div>
+    <div class="card kpi reveal"><div class="label">Utilization</div><div class="value counter" data-target="78.6" data-suffix="%">0</div><div class="delta">↑ 5.3% vs prior period</div></div>
+    <div class="card kpi reveal"><div class="label">Completion</div><div class="value counter" data-target="94.2" data-suffix="%">0</div><div class="delta">↑ 2.8% vs prior period</div></div>
+    <div class="card kpi reveal"><div class="label">Cancellation</div><div class="value counter" data-target="5.8" data-suffix="%">0</div><div class="delta" style="color:var(--green)">↓ 1.9% vs prior period</div></div>
+    <div class="card kpi reveal"><div class="label">Customer rating</div><div class="value counter" data-target="4.72" data-suffix="/5">0</div><div class="delta">↑ 0.14 quality signal</div></div>
+  </div>
+</div>
+</section>
+
+<section class="section" id="dashboard">
+<div class="container">
+  <div class="section-head reveal"><div><div class="kicker">02 / Command Center</div><h2>Supply meets demand.</h2></div><p>Spot coverage gaps before they become fulfillment problems. The dashboard is designed around operational questions, not vanity metrics.</p></div>
+  <div class="grid dashboard">
+    <div class="card panel reveal">
+      <div class="panel-title"><h3>Demand vs Available Capacity</h3><span>30-day trend · demo data</span></div>
+      <div class="chart">
+        <svg viewBox="0 0 900 260" preserveAspectRatio="none">
+          <defs><linearGradient id="fade" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#57a8ff" stop-opacity=".26"/><stop offset="1" stop-color="#57a8ff" stop-opacity="0"/></linearGradient></defs>
+          <path class="area" d="M0 220 C100 200 120 180 190 190 S300 125 370 145 S490 105 560 125 S670 55 750 82 S830 50 900 70 L900 260 L0 260Z"/>
+          <path class="line-main" d="M0 220 C100 200 120 180 190 190 S300 125 370 145 S490 105 560 125 S670 55 750 82 S830 50 900 70"/>
+          <path class="line-alt" d="M0 238 C100 220 120 205 190 212 S300 160 370 172 S490 145 560 150 S670 105 750 116 S830 100 900 108"/>
+        </svg>
+      </div>
+      <div class="legend"><span><i></i>Demand</span><span class="c"><i></i>Available capacity</span></div>
+    </div>
+    <div class="card panel reveal">
+      <div class="panel-title"><h3>Marketplace Health</h3><span>Live demo</span></div>
+      <div class="mini-list">
+        <div class="metric-row"><span>Demand coverage</span><b>91.2%</b></div>
+        <div class="metric-row"><span>Active partners</span><b>8,420</b></div>
+        <div class="metric-row"><span>Under-utilized</span><b>1,920</b></div>
+        <div class="metric-row"><span>Peak capacity gap</span><b style="color:var(--red)">1,440</b></div>
+        <div class="metric-row"><span>Avg. rating</span><b>4.72 / 5</b></div>
+        <div class="metric-row"><span>Pipeline status</span><b style="color:var(--green)">HEALTHY ●</b></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section" id="categories">
+<div class="container">
+  <div class="section-head reveal"><div><div class="kicker">03 / Category Intelligence</div><h2>Performance by category.</h2></div><p>Compare demand, partner capacity, utilization, completion and quality signals to understand where marketplace performance is changing.</p></div>
+  <div class="grid categories">
+    <div class="card cat reveal"><div class="top"><span class="kicker">01</span><span style="color:var(--green)">● Healthy</span></div><h3>Category A</h3><div class="score">91%</div><div class="bar"><i style="--w:91%"></i></div><div class="statline"><span>Bookings</span><b>24.8K</b></div><div class="statline"><span>Utilization</span><b>82.4%</b></div><div class="statline"><span>Rating</span><b>4.78</b></div></div>
+    <div class="card cat reveal"><div class="top"><span class="kicker">02</span><span style="color:var(--green)">● Stable</span></div><h3>Category B</h3><div class="score">84%</div><div class="bar"><i style="--w:84%"></i></div><div class="statline"><span>Bookings</span><b>21.4K</b></div><div class="statline"><span>Utilization</span><b>79.8%</b></div><div class="statline"><span>Rating</span><b>4.81</b></div></div>
+    <div class="card cat reveal"><div class="top"><span class="kicker">03</span><span style="color:var(--amber)">● Watch</span></div><h3>Category C</h3><div class="score">76%</div><div class="bar"><i style="--w:76%"></i></div><div class="statline"><span>Bookings</span><b>18.5K</b></div><div class="statline"><span>Utilization</span><b>74.2%</b></div><div class="statline"><span>Rating</span><b>4.64</b></div></div>
+    <div class="card cat reveal"><div class="top"><span class="kicker">04</span><span style="color:var(--amber)">● Watch</span></div><h3>Category D</h3><div class="score">71%</div><div class="bar"><i style="--w:71%"></i></div><div class="statline"><span>Bookings</span><b>17.2K</b></div><div class="statline"><span>Utilization</span><b>68.7%</b></div><div class="statline"><span>Rating</span><b>4.59</b></div></div>
+    <div class="card cat reveal"><div class="top"><span class="kicker">05</span><span style="color:var(--red)">● Gap</span></div><h3>Category E</h3><div class="score">64%</div><div class="bar"><i style="--w:64%"></i></div><div class="statline"><span>Bookings</span><b>14.9K</b></div><div class="statline"><span>Utilization</span><b>62.1%</b></div><div class="statline"><span>Rating</span><b>4.48</b></div></div>
+  </div>
+</div>
+</section>
+
+<section class="section" id="partners">
+<div class="container">
+  <div class="section-head reveal"><div><div class="kicker">04 / Partner Operations</div><h2>See the partner lifecycle.</h2></div><p>PartnerPulse treats supply as a lifecycle: onboarding → activation → bookings → utilization → retention.</p></div>
+  <div class="card panel reveal"><div class="lifecycle">
+    <div class="stage"><div class="stage-dot">01</div><b>Application</b><span>12,840</span></div><div class="stage"><div class="stage-dot">02</div><b>Onboarding</b><span>10,530</span></div><div class="stage"><div class="stage-dot">03</div><b>Activation</b><span>8,020</span></div><div class="stage"><div class="stage-dot">04</div><b>First Booking</b><span>7,060</span></div><div class="stage"><div class="stage-dot">05</div><b>Active</b><span>6,840</span></div><div class="stage"><div class="stage-dot">06</div><b>Retained</b><span>5,760</span></div>
+  </div></div>
+  <div style="height:16px"></div>
+  <div class="grid split">
+    <div class="card panel reveal"><div class="panel-title"><h3>Partner Utilization</h3><span>Segment view</span></div><div class="mini-list">
+      <div class="metric-row"><span>High utilization</span><b>1,284 partners</b></div><div class="metric-row"><span>Optimal</span><b>4,860 partners</b></div><div class="metric-row"><span>Under-utilized</span><b style="color:var(--amber)">1,920 partners</b></div><div class="metric-row"><span>At-risk</span><b style="color:var(--red)">356 partners</b></div>
+    </div></div>
+    <div class="card panel reveal"><div class="panel-title"><h3>Quality vs Utilization</h3><span>Partner segments</span></div>
+      <svg viewBox="0 0 500 220" style="height:220px">
+        <line x1="55" y1="185" x2="470" y2="185" stroke="#26374d"/><line x1="55" y1="20" x2="55" y2="185" stroke="#26374d"/>
+        <line x1="262" y1="20" x2="262" y2="185" stroke="#1e2d42" stroke-dasharray="4 5"/><line x1="55" y1="102" x2="470" y2="102" stroke="#1e2d42" stroke-dasharray="4 5"/>
+        <text x="260" y="210" fill="#71849e" font-size="10">UTILIZATION →</text><text x="10" y="105" fill="#71849e" font-size="10" transform="rotate(-90 10 105)">QUALITY →</text>
+        <g fill="#57a8ff" opacity=".8">
+          <circle cx="120" cy="80" r="6"/><circle cx="150" cy="67" r="4"/><circle cx="180" cy="90" r="5"/><circle cx="205" cy="55" r="7"/><circle cx="235" cy="73" r="5"/>
+          <circle cx="290" cy="50" r="6"/><circle cx="320" cy="75" r="5"/><circle cx="350" cy="62" r="7"/><circle cx="385" cy="45" r="5"/><circle cx="420" cy="82" r="6"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+  <div class="section-head reveal"><div><div class="kicker">05 / Coverage Intelligence</div><h2>Find pressure points.</h2></div><p>Heatmaps make peak periods and category-level capacity pressure visible at a glance.</p></div>
+  <div class="grid split">
+    <div class="card panel reveal"><div class="panel-title"><h3>Demand × Time Heatmap</h3><span>Demo snapshot</span></div>
+      <div class="heat">
+        <div class="head"></div><div class="head">9 AM</div><div class="head">12 PM</div><div class="head">3 PM</div><div class="head">6 PM</div><div class="head">9 PM</div><div class="head">12 AM</div>
+        <div class="head">Cat A</div><div class="cool">Low</div><div class="warm">Med</div><div class="warm">Med</div><div class="hot">High</div><div class="warm">Med</div><div class="cool">Low</div>
+        <div class="head">Cat B</div><div class="warm">Med</div><div class="cool">Low</div><div class="warm">Med</div><div class="hot">High</div><div class="hot">High</div><div class="warm">Med</div>
+        <div class="head">Cat C</div><div class="cool">Low</div><div class="warm">Med</div><div class="hot">High</div><div class="hot">High</div><div class="warm">Med</div><div class="cool">Low</div>
+        <div class="head">Cat D</div><div class="cool">Low</div><div class="cool">Low</div><div class="warm">Med</div><div class="hot">High</div><div class="warm">Med</div><div class="cool">Low</div>
+        <div class="head">Cat E</div><div class="warm">Med</div><div class="warm">Med</div><div class="hot">High</div><div class="hot">High</div><div class="hot">High</div><div class="warm">Med</div>
+      </div>
+    </div>
+    <div class="card panel reveal"><div class="panel-title"><h3>Cancellation Intelligence</h3><span>5.8% overall</span></div>
+      <div class="mini-list">
+        <div class="metric-row"><span>Partner unavailable</span><b>32%</b></div><div class="metric-row"><span>Customer cancelled</span><b>28%</b></div><div class="metric-row"><span>Capacity mismatch</span><b>21%</b></div><div class="metric-row"><span>Scheduling conflict</span><b>12%</b></div><div class="metric-row"><span>Other</span><b>7%</b></div>
+      </div>
+      <div class="bar" style="height:8px;margin-top:25px"><i style="--w:94.2%"></i></div><div style="font-size:10px;color:var(--muted)">94.2% of demo bookings completed successfully.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section" id="simulator">
+<div class="container">
+  <div class="section-head reveal"><div><div class="kicker">06 / Capacity Planning</div><h2>What happens if demand changes?</h2></div><p>Interactively test partner recruitment, demand growth and peak load assumptions. The simulator demonstrates the decision workflow.</p></div>
+  <div class="grid simulator">
+    <div class="card panel reveal">
+      <div class="panel-title"><h3>Scenario Controls</h3><span>Interactive</span></div>
+      <div class="controls">
+        <div class="control"><label>New partners <output id="partnersOut">250</output></label><input id="partnersRange" type="range" min="0" max="1000" step="50" value="250"></div>
+        <div class="control"><label>Demand growth <output id="demandOut">12%</output></label><input id="demandRange" type="range" min="0" max="30" value="12"></div>
+        <div class="control"><label>Peak load <output id="peakOut">1.25×</output></label><input id="peakRange" type="range" min="1" max="1.6" step=".05" value="1.25"></div>
+      </div>
+      <div style="margin-top:25px;padding-top:18px;border-top:1px solid var(--line)">
+        <div class="metric-row"><span>Projected demand</span><b id="projectedDemand">20,630</b></div>
+        <div class="metric-row"><span>Projected capacity</span><b id="projectedCapacity">18,750</b></div>
+        <div class="metric-row"><span>Coverage</span><b id="coverage">90.9%</b></div>
+        <div class="metric-row"><span>Gap / surplus</span><b id="gap" style="color:var(--red)">1,880 gap</b></div>
+      </div>
+    </div>
+    <div class="card panel reveal">
+      <div class="panel-title"><h3>Scenario Impact</h3><span>Before → simulated</span></div>
+      <div class="sim-chart" id="simBars">
+        <div class="bar-col"><i class="alt" style="height:76%"></i><i id="b1" style="height:76%"></i></div>
+        <div class="bar-col"><i class="alt" style="height:86%"></i><i id="b2" style="height:82%"></i></div>
+        <div class="bar-col"><i class="alt" style="height:68%"></i><i id="b3" style="height:77%"></i></div>
+        <div class="bar-col"><i class="alt" style="height:48%"></i><i id="b4" style="height:65%"></i></div>
+        <div class="bar-col"><i class="alt" style="height:60%"></i><i id="b5" style="height:72%"></i></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:8px">
+        <div class="bar-label">Coverage</div><div class="bar-label">Capacity</div><div class="bar-label">Utilization</div><div class="bar-label">Quality</div><div class="bar-label">Risk</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+  <div class="section-head reveal"><div><div class="kicker">07 / From Data → Decision</div><h2>Analytics that leads somewhere.</h2></div><p>PartnerPulse surfaces operational signals instead of stopping at charts.</p></div>
+  <div class="grid recommendations">
+    <div class="card alert reveal"><span class="tag">Supply Gap</span><h3>Category E needs capacity.</h3><p>Peak demand is exceeding available partner capacity. The simulator can test how many additional partners would close the gap.</p><div class="confidence">Scenario confidence · 87%</div></div>
+    <div class="card alert reveal"><span class="tag warn">Utilization</span><h3>Capacity is unevenly distributed.</h3><p>Under-utilized partners coexist with high-pressure periods. Allocation and availability patterns deserve investigation before pure recruitment.</p><div class="confidence">Signal strength · High</div></div>
+    <div class="card alert reveal"><span class="tag good">Quality</span><h3>Protect service quality.</h3><p>Monitor completion and ratings alongside utilization so capacity optimization does not hide customer-experience deterioration.</p><div class="confidence">Quality guardrail · Active</div></div>
+  </div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+  <div class="section-head reveal"><div><div class="kicker">08 / Technical Analytics</div><h2>SQL → Python → insight.</h2></div><p>The product story is supported by an engineering workflow: structured data, analytical transformations, APIs and decision-ready visualization.</p></div>
+  <div class="grid split">
+    <div class="terminal reveal"><div class="terminal-head"><i></i><i></i><i></i><span>SQL / category_analysis.sql</span></div><div class="code"><span class="kw">SELECT</span>
+    category,
+    <span class="kw">COUNT</span>(*) <span class="kw">AS</span> bookings,
+    <span class="kw">AVG</span>(partner_utilization) <span class="kw">AS</span> utilization,
+    <span class="kw">AVG</span>(customer_rating) <span class="kw">AS</span> rating
+<span class="kw">FROM</span> bookings
+<span class="kw">GROUP BY</span> category
+<span class="kw">ORDER BY</span> bookings <span class="kw">DESC</span>;</div><div class="terminal-result">✓ QUERY EXECUTED · 100K+ RECORDS ANALYZED · RESULT SET READY</div></div>
+    <div class="terminal reveal"><div class="terminal-head"><i></i><i></i><i></i><span>Python / partner_gap.py</span></div><div class="code"><span class="kw">category_gap</span> = bookings.groupby(<span class="str">"category"</span>).agg(
+    demand=(<span class="str">"booking_id"</span>, <span class="str">"count"</span>),
+    capacity=(<span class="str">"partner_capacity"</span>, <span class="str">"sum"</span>),
+    utilization=(<span class="str">"utilization"</span>, <span class="str">"mean"</span>)
+)
+
+category_gap[<span class="str">"supply_gap"</span>] = (
+    category_gap.demand - category_gap.capacity
+)</div><div class="terminal-result">✓ GAP ANALYSIS · ✓ UTILIZATION · ✓ CATEGORY AGGREGATION · ✓ INSIGHTS</div></div>
+  </div>
+</div>
+</section>
+
+<section class="section" id="architecture">
+<div class="container">
+  <div class="section-head reveal"><div><div class="kicker">09 / System Architecture</div><h2>From raw records to decisions.</h2></div><p>A clean analytics pipeline connects the marketplace data layer to the operational interface.</p></div>
+  <div class="card architecture reveal">
+    <div class="flow">
+      <div class="flow-node card"><strong>BOOKINGS</strong><span>Demand events</span></div><div class="flow-arrow">→</div>
+      <div class="flow-node card"><strong>POSTGRESQL</strong><span>Structured data</span></div><div class="flow-arrow">→</div>
+      <div class="flow-node card"><strong>SQL + PYTHON</strong><span>Transform & analyze</span></div><div class="flow-arrow">→</div>
+      <div class="flow-node card"><strong>FASTAPI</strong><span>REST layer</span></div><div class="flow-arrow">→</div>
+      <div class="flow-node card"><strong>OPERATIONS UI</strong><span>Insights & decisions</span></div>
+    </div>
+  </div>
+  <div style="height:18px"></div>
+  <div class="card panel reveal">
+    <div class="panel-title"><h3>Technology Stack</h3><span>Project toolkit</span></div>
+    <div class="tech">
+      <span>SQL</span><span>PostgreSQL</span><span>Python</span><span>Pandas</span><span>Advanced Excel</span><span>Power BI</span><span>Tableau</span><span>Scikit-learn</span><span>FastAPI</span><span>REST APIs</span><span>Docker</span><span>Data Analysis</span><span>Data Visualization</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+  <div class="section-head reveal"><div><div class="kicker">10 / Project Thinking</div><h2>Built for marketplace decisions.</h2></div><p>PartnerPulse demonstrates how analytical work can bridge raw operational data and the questions category or partner teams actually need to answer.</p></div>
+  <div class="grid decision">
+    <div class="card reveal"><h3>What is happening?</h3><p>Track bookings, supply, capacity, utilization, completion, cancellations, revenue and ratings across categories.</p><div class="formula"><span>Demand</span><b>+</b><span>Supply</span><b>+</b><span>Quality</span><b>+</b><span>Revenue</span></div></div>
+    <div class="card reveal"><h3>What should we investigate?</h3><p>Locate category-level supply gaps, uneven partner utilization, peak-period pressure and quality signals that deserve operational attention.</p><div class="formula"><span>Detect</span><b>→</b><span>Explain</span><b>→</b><span>Simulate</span><b>→</b><span>Act</span></div></div>
+  </div>
+</div>
+</section>
+
+<footer>
+<div class="container">
+  <div class="footer-grid">
+    <div><div class="brand"><span class="logo"></span>PartnerPulse</div><p>Category & Partner Operations Intelligence Platform — a portfolio project demonstrating marketplace analytics, supply-demand planning, partner operations and data-driven decision support.</p></div>
+    <div><a class="btn primary" href="#top">Back to top ↑</a></div>
+  </div>
+  <div class="disclaimer"><strong>Demo environment:</strong> Metrics and operational events shown in this interactive interface are representative/simulated unless explicitly stated otherwise. No Urban Company proprietary or confidential data is used. The project is designed to demonstrate an analytical approach to technology-enabled service marketplaces.</div>
+</div>
+</footer>
+</main>
+<div class="toast" id="toast">PartnerPulse demo mode enabled.</div>
+
+<script>
+const revealObserver = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObserver.unobserve(e.target)}})
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+const counterObserver = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(!entry.isIntersecting) return;
+    const el=entry.target,target=Number(el.dataset.target),suffix=el.dataset.suffix||'',format=el.dataset.format||'';
+    let start=0,duration=1300,startTime=null;
+    function tick(t){
+      if(!startTime) startTime=t;
+      const p=Math.min((t-startTime)/duration,1),ease=1-Math.pow(1-p,3),v=target*ease;
+      let out;
+      if(format==='plus') out=Math.round(v).toLocaleString()+'+';
+      else if(target%1!==0) out=v.toFixed(1);
+      else out=Math.round(v).toLocaleString();
+      el.textContent=out+suffix;
+      if(p<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);counterObserver.unobserve(el);
+  })
+},{threshold:.5});
+document.querySelectorAll('.counter').forEach(el=>counterObserver.observe(el));
+
+function showToast(message){
+  const t=document.getElementById('toast');t.textContent=message;t.classList.add('show');clearTimeout(window.toastTimer);
+  window.toastTimer=setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+const pr=document.getElementById('partnersRange'),dr=document.getElementById('demandRange'),xr=document.getElementById('peakRange');
+function updateSimulator(){
+  const partners=+pr.value,growth=+dr.value,peak=+xr.value;
+  document.getElementById('partnersOut').textContent=partners.toLocaleString();
+  document.getElementById('demandOut').textContent=growth+'%';
+  document.getElementById('peakOut').textContent=peak.toFixed(2)+'×';
+  const baseDemand=18420,baseCapacity=16800;
+  const demand=Math.round(baseDemand*(1+growth/100)*peak/1.25);
+  const capacity=Math.round(baseCapacity+partners*7.8);
+  const coverage=Math.min(capacity/demand*100,120);
+  const gap=demand-capacity;
+  document.getElementById('projectedDemand').textContent=demand.toLocaleString();
+  document.getElementById('projectedCapacity').textContent=capacity.toLocaleString();
+  document.getElementById('coverage').textContent=coverage.toFixed(1)+'%';
+  const gapEl=document.getElementById('gap');
+  gapEl.textContent=gap>0?gap.toLocaleString()+' gap':Math.abs(gap).toLocaleString()+' surplus';
+  gapEl.style.color=gap>0?'var(--red)':'var(--green)';
+  document.getElementById('b1').style.height=Math.min(100,coverage*.82)+'%';
+  document.getElementById('b2').style.height=Math.min(100,(capacity/baseCapacity)*70)+'%';
+  document.getElementById('b3').style.height=Math.max(30,Math.min(100,(demand/capacity)*72))+'%';
+  document.getElementById('b4').style.height=Math.max(35,Math.min(100,70+(coverage-90)*.6))+'%';
+  document.getElementById('b5').style.height=Math.max(30,Math.min(100,90-(coverage-90)*.8))+'%';
+}
+[pr,dr,xr].forEach(x=>x.addEventListener('input',updateSimulator));updateSimulator();
+
+const sections=[...document.querySelectorAll('section[id]')],navLinks=[...document.querySelectorAll('.links a')];
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(s=>{if(scrollY>=s.offsetTop-130) current=s.id});
+  navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>showToast('Navigating PartnerPulse analytics...')));
+
+setTimeout(()=>showToast('PartnerPulse analytics engine online · Demo mode'),900);
+</script>
+</body>
+</html>
